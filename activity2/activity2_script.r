@@ -1,5 +1,5 @@
 #####Vector practice
-
+ 
 #making a vector of tree heights in meters
 heights<-c(30,41,20,22)
 #convert to cm
@@ -16,7 +16,7 @@ Mat.by.col<-matrix(c(1,2,3,4,5,6),ncol=2,byrow=FALSE)
 ########beginning the activity #############
 
 #read in weather station file from the data folder
-#reading from school computer
+#reading from school computer and server
 #datW<- read.csv("y:\\Students\\cschwartz1\\a02\\2011124.csv")
 
 #reading in weather station file from my computer
@@ -81,7 +81,7 @@ averageTemp
 #convert level to number for factor data type
 datW$siteN<-as.numeric(datW$NAME)
 #histogram for the first site in our levels
-par(mfrow=c(2,2))
+
 hist(datW$TAVE[datW$siteN==1],
      freq=FALSE,
      main=paste(levels(datW$NAME)[1]),
@@ -108,7 +108,15 @@ abline(v=mean(datW$TAVE[datW$site==1],na.rm=TRUE)+sd(datW$TAVE[datW$siteN==1],na
        lwd=3)
 
 ###############QUESTION 4###############
-#first histogram
+par(mfrow=c(2,2))
+hist(datW$TAVE[datW$siteN==1],
+     freq=FALSE,
+     main=paste(levels(datW$NAME)[1]),
+     xlab="Average daily temperature (degrees C)",
+     ylab="Relative frequency",
+     col="grey50",
+     border="white")
+#first site histogram other than Aberdeen
 hist(datW$TAVE[datW$siteN==2],
      freq=FALSE,
      main=paste(levels(datW$NAME)[2]),
@@ -168,7 +176,7 @@ abline(v=mean(datW$TAVE[datW$site==3],na.rm=TRUE)+sd(datW$TAVE[datW$siteN==3],na
        lwd=3)
 
 ####probability distributions####
-par(mfrow=c(1,1))
+par(mfrow=c(1,1))  #changing back to one graph view mode
 h1<-hist(datW$TAVE[datW$siteN==1],
          freq=FALSE,
          main=paste(levels(datW$NAME)[1]),
@@ -179,6 +187,7 @@ h1<-hist(datW$TAVE[datW$siteN==1],
 #seq function --> sequence of numbers we can use to plot normal across range of
 #temperature values
 x.plot<-seq(-10,30,length.out=100)
+#dnorm creates probability density based on mean and sd
 y.plot<-dnorm(seq(-10,30,length.out=100),
               mean(datW$TAVE[datW$siteN==1],na.rm=TRUE),
               sd(datW$TAVE[datW$siteN==1],na.rm=TRUE))
@@ -237,10 +246,10 @@ hist(datW$PRCP[datW$siteN==1],
 
 ######QUESTION 8##############
 precip<-aggregate(datW$PRCP, by=list(datW$year,datW$NAME),FUN="sum",na.rm=TRUE)
-colnames(precip)<-c("Year","Name","Sum")
+colnames(precip)<-c("Year","Name","Precipitation for Year")
 #histogram of annual precipitation for Aberdeen
 
-hist(precip$Sum[precip$Name=="ABERDEEN, WA US"],
+hist(precip$`Precipitation for Year`[precip$Name=="ABERDEEN, WA US"],
      freq=FALSE,
      main=paste(levels(datW$NAME)[1]),
      xlab="Annual Precipitation",
@@ -251,7 +260,8 @@ hist(precip$Sum[precip$Name=="ABERDEEN, WA US"],
 #####QUESTION 9#############
 #this first aggregate function calculates the mean daily preciptation value for each site
 averagePrecip<-aggregate(datW$PRCP,by=list(datW$NAME),FUN="mean",na.rm=TRUE)
+colnames(averagePrecip)<-c("Name","Mean Daily Precipitation")
 #calculates mean annual precipitation at each site
-averagePrecip1<-aggregate(precip$Sum, by=list(precip$Name),FUN="mean",na.rm=TRUE)
-
+averagePrecip1<-aggregate(precip$`Precipitation for Year`, by=list(precip$Name),FUN="mean",na.rm=TRUE)
+colnames(averagePrecip1)<-c("Name","Mean Annual Precipitation")
 
