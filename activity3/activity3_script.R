@@ -212,6 +212,7 @@ mean(datW$soil.temp,na.rm=TRUE)
 #precipitation
 sum(datW$precipitation)
 length(datW$precipitation)
+#observations were made everyday and no missing values
 
 ###QUESTION 9#####
 par(mfrow=c(2,2))
