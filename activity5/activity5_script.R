@@ -364,3 +364,4 @@ ggplot(data=year17, aes(season,discharge))+
   xlab("Seasons")+
   ylab(expression(paste("Discharge ft"^"3 ","sec"^"-1")))+
   ggtitle("2017 Discharge by Season")
+   
