@@ -90,6 +90,9 @@ g1966@polygons[[1]]@Polygons[[1]]
 plot(g1966,axes=TRUE)
 
 #######QUESTION 3############
+plot(NDVIraster[[1]])
+plot(g1966,axes=TRUE)
+
 par(mfrow=c(1,2))
 #par(mai=c(1,1,1,1))
 plot(NDVIraster[[1]])
@@ -258,7 +261,7 @@ min(meanChange[,2]*15)
 quantile(meanChange[,2]*15)
 
 ###QUESTION 11####
-mean(meanChange[,2])  #average NDVI mean change
+mean(meanChange[,2])  
 #first way i thought to calculate the raster
 sum_NDVI<-NDVIraster[[1]]
 for(i in 2:length(NDVIraster)){
@@ -267,6 +270,7 @@ for(i in 2:length(NDVIraster)){
 
 average_NDVI <- sum_NDVI/14  #raster dataset of average maximum NDVI across all years 
 plot(average_NDVI) 
+
 #second way I thought to calculate the raster
 NDVI_average<-calc(NDVIstack, mean, na.rm=TRUE)
 plot(NDVI_average)  
