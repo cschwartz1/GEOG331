@@ -284,16 +284,12 @@ freq(rf_prediction)
 ###QUESTION 5###
 #raster that shows whether neural network and random forest predictions agree or disagree
 #first idea: subtract the two and see where values are not 0
-#those that are 0 are areas that agree, other values do not agree
+#those that are 0 are areas that agree, other values do not agree 
 par(mfrow=c(1,1))
 predictions<-nnet_prediction-rf_prediction
-breakpoints<-c(-5.5, -4.5, -3.5, -2.5, -1.5, -0.5, 0.5, 1.5, 2.5, 3.5, 4.5, 5.5) #change these to .5
+breakpoints<-c(-5.5, -4.5, -3.5, -2.5, -1.5, -0.5, 0.5, 1.5, 2.5, 3.5, 4.5, 5.5) 
 colors_predict<-c("red", "red", "red", "red", "red", "green","red", "red", "red", "red", "red")
 plot(predictions, breaks=breakpoints, col=colors_predict, legend=FALSE)
 legend("bottomleft", paste(c("Agree","Disagree")),
        fill=c("green","red"), bty="n")
-
-
-
-
 
