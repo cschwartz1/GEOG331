@@ -6,13 +6,13 @@ q42013_data <- Q4_raw_data   #renaming the dataframe
 table(q42013_data$Segment)    #how many active deals are in each segment for Q4
 
 #splitting the data into segments (each segment becomes its own dataframe)
-q4_goods<- q42013_data[which(q42013_data$Segment=="Goods"),]
+q4_goods<- q42013_data[which(q42013_data$Segment=="Goods"),] 
 q4_local<- q42013_data[which(q42013_data$Segment=="Local"),]
 q4_travel<- q42013_data[which(q42013_data$Segment=="Travel"),]
 
 ##############################LOCAL DATA#####################
 
-#check for duplicates
+#check for duplicates 
 dup_local<-duplicated(q4_local)
 table(dup_local)
 dup_local_deals<-duplicated(q4_local$`Deal ID`)   #checking if any deals were recorded twice
